@@ -1,6 +1,5 @@
 import 'package:example/application/cubit/counter_cubit.dart';
 import 'package:example/presentation/counter_page/counter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -5,7 +5,6 @@ class ApiService {
     final response = await Dio().get(
       "https://rickandmortyapi.com/api/character",
     );
-    print(response.data["results"]);
     return response.data["results"];
   }
 }

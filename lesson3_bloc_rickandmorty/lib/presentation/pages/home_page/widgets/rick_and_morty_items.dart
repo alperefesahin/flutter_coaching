@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:rickandmorty/domain/character/character.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rickandmorty/application/cubit/search_cubit.dart';
+import 'package:rickandmorty/application/cubit/search_state.dart';
 import 'package:rickandmorty/presentation/common_widgets/colors.dart';
 import 'package:rickandmorty/presentation/pages/home_page/constants.dart/texts.dart';
 import 'package:sizer/sizer.dart';
@@ -10,12 +12,12 @@ class RickAndMortyItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<CharacterModel> characterList = [
-      CharacterModel(characterName: "random", characterImgUrl: "https://picsum.photos/200/300")
-    ]; //!
+    return BlocBuilder<SearchCubit, SearchState>(
+      builder: (context, state) {
+        final characterList = state.listOfCharacterModel;
 
-    return characterList.isEmpty
-        ? const Center(
+        if (characterList.isEmpty) {
+          return const Center(
             child: Padding(
               padding: EdgeInsets.only(top: 150, left: 8, right: 8),
               child: Text(
@@ -24,8 +26,9 @@ class RickAndMortyItems extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-          )
-        : SizedBox(
+          );
+        } else {
+          return SizedBox(
             width: 100.w,
             height: 60.h,
             child: GridView.builder(
@@ -72,5 +75,8 @@ class RickAndMortyItems extends StatelessWidget {
               },
             ),
           );
+        }
+      },
+    );
   }
 }

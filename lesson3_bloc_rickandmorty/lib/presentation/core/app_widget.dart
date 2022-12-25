@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rickandmorty/application/cubit/search_cubit.dart';
 import 'package:rickandmorty/presentation/pages/home_page/home_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -6,9 +8,13 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return BlocProvider(
+      create: (context) => SearchCubit()..getCharactersDatas(),
+      lazy: false,
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
+      ),
     );
   }
 }
