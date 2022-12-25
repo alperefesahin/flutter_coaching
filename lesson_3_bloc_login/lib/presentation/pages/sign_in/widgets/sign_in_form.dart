@@ -10,9 +10,6 @@ class SignInForm extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
-    print("emailController: ${emailController.value.text}");
-    print("passwordController: ${passwordController.value.text}");
-
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: ListView(
