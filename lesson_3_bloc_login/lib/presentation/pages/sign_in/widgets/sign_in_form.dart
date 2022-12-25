@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lesson3_bloc_login/application/cubit/auth_cubit.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
+    print("emailController: ${emailController.value.text}");
+    print("passwordController: ${passwordController.value.text}");
+
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: ListView(
@@ -22,7 +30,7 @@ class SignInForm extends StatelessWidget {
               labelText: 'Email',
             ),
             autocorrect: false,
-            onChanged: (value) {},
+            controller: emailController,
           ),
           const SizedBox(height: 8),
           TextFormField(
@@ -32,32 +40,59 @@ class SignInForm extends StatelessWidget {
             ),
             autocorrect: false,
             obscureText: true,
-            onChanged: (value) {},
+            controller: passwordController,
           ),
           const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<AuthCubit>().signIn(
+                          email: emailController.value.text,
+                          password: passwordController.value.text,
+                        );
+                  },
                   child: const Text('SIGN IN'),
                 ),
               ),
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<AuthCubit>().signUp(
+                          email: emailController.value.text,
+                          password: passwordController.value.text,
+                        );
+                  },
                   child: const Text('REGISTER'),
                 ),
               ),
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<AuthCubit>().signInWithGoogle();
+            },
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all(Colors.lightBlue),
             ),
             child: const Text(
               'SIGN IN WITH GOOGLE',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context.read<AuthCubit>().signOut();
+            },
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(Colors.lightBlue),
+            ),
+            child: const Text(
+              'signout',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

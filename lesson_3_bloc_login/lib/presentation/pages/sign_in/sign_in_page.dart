@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lesson3_bloc_login/presentation/pages/sign_in/widgets/sign_in_form.dart';
 
-
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 

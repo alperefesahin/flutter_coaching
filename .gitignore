@@ -25,3 +25,9 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+lesson_3_bloc_login/android/app/google-services.json
+lesson_3_bloc_login/ios/firebase_app_id_file.json
+lesson_3_bloc_login/lib/firebase_options.dart
+lesson_3_bloc_login/macos/firebase_app_id_file.json
+lesson_3_bloc_login/macos/Runner/GoogleService-Info.plist
+lesson_3_bloc_login/ios/Runner/GoogleService-Info.plist
